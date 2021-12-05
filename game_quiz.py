@@ -3,10 +3,12 @@ Welcome to Simple python quiz game
 """
 import sys
 
+
 class Question:
     """ The class based implementation of python quiz game"""
     def __init__(self, prompt, answer):
         self.prompt = prompt
+
         self.answer = answer
     @classmethod
     def greet(cls):
@@ -21,34 +23,35 @@ class Question:
         if play != "yes":
             sys.exit()
             
-question_prompts = [
-    "Question 1: What is your Favourite programming language?",
-    "Question 2: Do you follow any author on AskPython?",
-    "Question 3: What is the name of your favourite website for learning Python?"
-]
+question_prompts = {
+    "1": "What is your Favourite programming language?",
+    "2": "Do you follow any author on AskPython?",
+    "3": "What is the name of your favourite website for learning Python?"
+}
 
-questions = [
-    Question(question_prompts[0], "python"),
-    Question(question_prompts[1], "yes"),
-    Question(question_prompts[2], "askpython"),
-]
+q1 =Question(question_prompts["1"], "python")
+q2=Question(question_prompts["2"], "yes")
+q3=Question(question_prompts["3"], "askpython")
+
+questions=[q1, q2, q3]
 
 
-def run_quiz(quest):
+
+def run_quiz(questions):
     """Quiz code started from here"""
     score = 0.1
-    noq = 0
+    number_of_question = 0
     Question.greet()
     Question.interest()
-    for question in quest:
+    for question in questions:
         answer = input(question.prompt)
         if answer == question.answer:
             print("correct")
             score += 33.33
-            noq += 1
+            number_of_question += 1
         else:
             print("incorrect")
-    print(f"Thankyou for Playing this small quiz game, you attempted {noq} questions correctly!")
+    print(f"Thankyou for Playing this small quiz game, you attempted {number_of_question} questions correctly!")
     print(f"Marks obtained: {round(score)}")
     print("BYE!")
 
